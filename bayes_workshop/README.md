@@ -5,6 +5,7 @@ Presentación interactiva y autónoma para un taller de aproximadamente 60 minut
 ## ¿Qué incluye?
 
 - Presentación en pantalla completa, organizada por diapositivas.
+- Cambio instantáneo entre español e inglés (`L`); el español colombiano es el idioma inicial.
 - Panel con controles para quien presenta (`P`).
 - Navegación con el teclado (`←`, `→` y `Espacio`).
 - Modo de pantalla completa (`F`).
@@ -44,6 +45,7 @@ Después, abre `http://localhost:8000` en el navegador.
 - `←` o `Re Pág`: volver a la diapositiva anterior.
 - `Espacio`: revelar el siguiente elemento; si no hay nada oculto, avanzar.
 - `P`: mostrar u ocultar el panel y habilitar por completo los controles interactivos.
+- `L`: cambiar entre español e inglés.
 - `F`: entrar o salir del modo de pantalla completa.
 
 ### Experimento de la moneda

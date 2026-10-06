@@ -1,5 +1,5 @@
 const slides=[...document.querySelectorAll('.slide')];
-let index=0,presenter=false;
+let index=0,lang='es',presenter=false;
 const state={flips:[],responses:[],rainyDays:10,totalDays:31,posteriorVisible:false};
 const $=s=>document.querySelector(s);
 
@@ -8,7 +8,7 @@ function showSlide(i){
   slides.forEach((s,j)=>s.classList.toggle('active',j===index));
   $('#slideCounter').textContent=`${index+1} / ${slides.length}`;
   $('#progressBar').style.width=`${((index+1)/slides.length)*100}%`;
-  $('#presenterTitle').textContent=slides[index].dataset.title||'';
+  $('#presenterTitle').textContent=slides[index].dataset[`title${lang==='es'?'Es':'En'}`]||'';
   slides[index].querySelectorAll('.reveal').forEach(r=>r.classList.remove('shown'));
   if(slides[index].querySelector('#priorChart')) drawPrior();
   if(slides[index].querySelector('#updateChart')) drawUpdate();
@@ -20,6 +20,17 @@ function nextRevealOrSlide(){
 function prev(){showSlide(index-1)}
 function togglePresenter(){presenter=!presenter;document.body.classList.toggle('presenter-mode',presenter);$('#presenterPanel').classList.toggle('open',presenter);$('#presenterPanel').setAttribute('aria-hidden',String(!presenter));}
 function toggleFull(){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.();}
+function toggleLang(){
+  lang=lang==='es'?'en':'es';
+  document.documentElement.lang=lang==='es'?'es-CO':'en';
+  document.title=lang==='es'?'Razonar en medio de la incertidumbre — Inferencia bayesiana e IA':'Reasoning under uncertainty — Bayesian inference and AI';
+  $('#pageDescription').content=lang==='es'?'Taller interactivo de introducción a la inferencia bayesiana y su relación con la inteligencia artificial.':'An interactive introduction to Bayesian inference and its relationship with artificial intelligence.';
+  document.querySelectorAll('[data-en][data-es]').forEach(el=>{el.textContent=el.dataset[lang]});
+  document.querySelectorAll('[data-aria-en][data-aria-es]').forEach(el=>{el.setAttribute('aria-label',el.dataset[`aria${lang==='es'?'Es':'En'}`])});
+  $('#coinFace').textContent=lang==='es'?'C':'H';
+  renderFlips();renderResponses();
+  $('#presenterTitle').textContent=slides[index].dataset[`title${lang==='es'?'Es':'En'}`]||'';
+}
 
 document.addEventListener('keydown',e=>{
   if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)) return;
@@ -27,17 +38,18 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft'||e.key==='PageUp'){prev();}
   if(e.code==='Space'){e.preventDefault();nextRevealOrSlide();}
   if(e.key.toLowerCase()==='p')togglePresenter();
+  if(e.key.toLowerCase()==='l')toggleLang();
   if(e.key.toLowerCase()==='f')toggleFull();
 });
-$('#prevBtn').onclick=prev;$('#nextBtn').onclick=nextRevealOrSlide;$('#fullscreenBtn').onclick=toggleFull;
+$('#prevBtn').onclick=prev;$('#nextBtn').onclick=nextRevealOrSlide;$('#langBtn').onclick=toggleLang;$('#fullscreenBtn').onclick=toggleFull;
 
 // Experimento de la moneda
 function addFlip(v){if(state.flips.length>=15)return;state.flips.push(v);renderFlips()}
 function renderFlips(){
-  $('#coinResults').innerHTML=state.flips.map(v=>`<span class="flip-chip ${v==='C'?'head':'tail'}">${v}</span>`).join('');
+  $('#coinResults').innerHTML=state.flips.map(v=>`<span class="flip-chip ${v==='C'?'head':'tail'}">${lang==='es'?v:(v==='C'?'H':'T')}</span>`).join('');
   const h=state.flips.filter(x=>x==='C').length,t=state.flips.length-h;
   $('#headsCount').textContent=h;$('#tailsCount').textContent=t;$('#observedRate').textContent=state.flips.length?`${Math.round(h/state.flips.length*100)}%`:'—';
-  if(state.flips.length===15)$('#coinPrompt').textContent='Completamos los 15 lanzamientos. Ahora pregúntate: ¿cambió lo que creías sobre el lanzamiento 16?';
+  if(state.flips.length===15)$('#coinPrompt').textContent=lang==='es'?'Completamos los 15 lanzamientos. Ahora pregúntate: ¿cambió lo que creías sobre el lanzamiento 16?':'All 15 flips are complete. Now ask yourself: did your belief about flip 16 change?';
 }
 $('#headsBtn').onclick=()=>addFlip('C');$('#tailsBtn').onclick=()=>addFlip('S');$('#randomBtn').onclick=()=>addFlip(Math.random()<.5?'C':'S');$('#resetCoinBtn').onclick=()=>{state.flips=[];renderFlips()};
 
@@ -63,10 +75,10 @@ function drawDist(canvas,series){
   series.forEach((s,si)=>{ctx.beginPath();s.d.forEach((v,i)=>{const x=pad.l+(W-pad.l-pad.r)*i/(grid.length-1);const y=H-pad.b-(H-pad.t-pad.b)*(v/max);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.strokeStyle=colors[si%colors.length];ctx.lineWidth=5;ctx.stroke();ctx.fillStyle=colors[si%colors.length];ctx.font='22px system-ui';ctx.fillText(s.label,pad.l+10,pad.t+24+si*28)});
   ctx.fillStyle='#94a3b8';ctx.font='18px system-ui';ctx.textAlign='center';[0,25,50,75,100].forEach(v=>{const x=pad.l+(W-pad.l-pad.r)*v/100;ctx.fillText(`${v}%`,x,H-14)});ctx.textAlign='left';
 }
-function drawPrior(){const d=classPrior();drawDist($('#priorChart'),[{label:'Distribución previa del grupo',d}]);const s=stats(d);$('#responseCount').textContent=state.responses.length;$('#priorMean').textContent=state.responses.length?`${Math.round(s.mean*100)}%`:'—';$('#priorSpread').textContent=state.responses.length?`${Math.round(s.lo*100)}–${Math.round(s.hi*100)}%`:'—';}
-function drawUpdate(){const p=classPrior(),post=posterior();drawDist($('#updateChart'),state.posteriorVisible?[{label:'Previa',d:p},{label:'Posterior',d:post}]:[{label:'Previa',d:p}]);const s=stats(post);$('#posteriorMean').textContent=state.posteriorVisible?`${Math.round(s.mean*100)}%`:'—';$('#posteriorRange').textContent=state.posteriorVisible?`${Math.round(s.lo*100)}–${Math.round(s.hi*100)}%`:'—';}
+function drawPrior(){const d=classPrior();drawDist($('#priorChart'),[{label:lang==='es'?'Distribución previa del grupo':'Class prior distribution',d}]);const s=stats(d);$('#responseCount').textContent=state.responses.length;$('#priorMean').textContent=state.responses.length?`${Math.round(s.mean*100)}%`:'—';$('#priorSpread').textContent=state.responses.length?`${Math.round(s.lo*100)}–${Math.round(s.hi*100)}%`:'—';}
+function drawUpdate(){const p=classPrior(),post=posterior();const priorLabel=lang==='es'?'Previa':'Prior';const posteriorLabel=lang==='es'?'Posterior':'Posterior';drawDist($('#updateChart'),state.posteriorVisible?[{label:priorLabel,d:p},{label:posteriorLabel,d:post}]:[{label:priorLabel,d:p}]);const s=stats(post);$('#posteriorMean').textContent=state.posteriorVisible?`${Math.round(s.mean*100)}%`:'—';$('#posteriorRange').textContent=state.posteriorVisible?`${Math.round(s.lo*100)}–${Math.round(s.hi*100)}%`:'—';}
 function renderResponses(){
-  $('#responseDots').innerHTML=state.responses.map(r=>`<span class="response-dot" title="Nivel de confianza: ${r.c}">${Math.round(r.p*100)}% · confianza ${r.c}</span>`).join('');drawPrior();drawUpdate();
+  $('#responseDots').innerHTML=state.responses.map(r=>`<span class="response-dot" title="${lang==='es'?'Nivel de confianza':'Confidence level'}: ${r.c}">${Math.round(r.p*100)}% · ${lang==='es'?'confianza':'confidence'} ${r.c}</span>`).join('');drawPrior();drawUpdate();
 }
 $('#addResponseBtn').onclick=()=>{const p=Math.max(1,Math.min(99,Number($('#probInput').value)))/100,c=Number($('#confInput').value);state.responses.push({p,c});state.posteriorVisible=false;renderResponses();};
 $('#clearResponsesBtn').onclick=()=>{state.responses=[];state.posteriorVisible=false;renderResponses();};
