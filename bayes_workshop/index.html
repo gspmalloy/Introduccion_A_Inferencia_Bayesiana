@@ -1,268 +1,268 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-CO">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#111827" />
-  <title>Reasoning Under Uncertainty — Bayesian Inference & AI</title>
+  <meta name="description" content="Taller interactivo de introducción a la inferencia bayesiana y su relación con la inteligencia artificial." />
+  <title>Razonar en medio de la incertidumbre — Inferencia bayesiana e IA</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main id="deck" aria-live="polite">
-    <section class="slide active title-slide" data-title="Opening">
-      <div class="eyebrow" data-en="60-minute interactive workshop" data-es="Taller interactivo de 60 minutos">60-minute interactive workshop</div>
-      <h1 data-en="How sure are we about what we believe?" data-es="¿Qué tan seguros estamos de lo que creemos?">How sure are we about what we believe?</h1>
-      <p class="subtitle" data-en="Probability, Bayesian inference, and artificial intelligence" data-es="Probabilidad, inferencia bayesiana e inteligencia artificial">Probability, Bayesian inference, and artificial intelligence</p>
+    <section class="slide active title-slide" data-title-es="Inicio" data-title-en="Opening">
+      <div class="eyebrow" data-es="Taller interactivo de 60 minutos" data-en="60-minute interactive workshop">Taller interactivo de 60 minutos</div>
+      <h1 data-es="¿Qué tan seguros estamos de lo que creemos?" data-en="How sure are we about what we believe?">¿Qué tan seguros estamos de lo que creemos?</h1>
+      <p class="subtitle" data-es="Probabilidad, inferencia bayesiana e inteligencia artificial" data-en="Probability, Bayesian inference, and artificial intelligence">Probabilidad, inferencia bayesiana e inteligencia artificial</p>
       <div class="hero-mark">?</div>
     </section>
 
-    <section class="slide" data-title="Probability">
-      <div class="eyebrow" data-en="Start simple" data-es="Empecemos simple">Start simple</div>
-      <h2 data-en="What is probability?" data-es="¿Qué es la probabilidad?">What is probability?</h2>
+    <section class="slide" data-title-es="Probabilidad" data-title-en="Probability">
+      <div class="eyebrow" data-es="Empecemos por lo sencillo" data-en="Let's start with something simple">Empecemos por lo sencillo</div>
+      <h2 data-es="¿Qué es la probabilidad?" data-en="What is probability?">¿Qué es la probabilidad?</h2>
       <div class="big-number">70%</div>
-      <p class="question" data-en="What does this number actually mean?" data-es="¿Qué significa realmente este número?">What does this number actually mean?</p>
+      <p class="question" data-es="En realidad, ¿qué significa este número?" data-en="What does this number actually mean?">En realidad, ¿qué significa este número?</p>
       <div class="reveal" data-step="1">
-        <p class="takeaway" data-en="Probability is a language for describing uncertainty." data-es="La probabilidad es un lenguaje para describir la incertidumbre.">Probability is a language for describing uncertainty.</p>
+        <p class="takeaway" data-es="La probabilidad es un lenguaje para hablar de la incertidumbre." data-en="Probability is a language for describing uncertainty.">La probabilidad es un lenguaje para hablar de la incertidumbre.</p>
       </div>
     </section>
 
-    <section class="slide" data-title="Coin question">
-      <div class="eyebrow" data-en="Experiment 1" data-es="Experimento 1">Experiment 1</div>
-      <h2 data-en="This is a fair coin." data-es="Esta es una moneda justa.">This is a fair coin.</h2>
-      <div class="coin" aria-hidden="true">H</div>
-      <p class="question" data-en="What is the probability the next flip is heads?" data-es="¿Cuál es la probabilidad de que el próximo lanzamiento sea cara?">What is the probability the next flip is heads?</p>
-      <p class="instruction" data-en="Write your answer down. Don't say it out loud yet." data-es="Escribe tu respuesta. No la digas en voz alta todavía.">Write your answer down. Don't say it out loud yet.</p>
+    <section class="slide" data-title-es="La moneda" data-title-en="The coin">
+      <div class="eyebrow" data-es="Experimento 1" data-en="Experiment 1">Experimento 1</div>
+      <h2 data-es="Esta moneda está equilibrada." data-en="This is a fair coin.">Esta moneda está equilibrada.</h2>
+      <div id="coinFace" class="coin" aria-hidden="true">C</div>
+      <p class="question" data-es="¿Cuál es la probabilidad de que el próximo lanzamiento salga cara?" data-en="What is the probability that the next flip is heads?">¿Cuál es la probabilidad de que el próximo lanzamiento salga cara?</p>
+      <p class="instruction" data-es="Anota tu respuesta. Todavía no la digas en voz alta." data-en="Write down your answer. Don't say it out loud yet.">Anota tu respuesta. Todavía no la digas en voz alta.</p>
     </section>
 
-    <section class="slide interactive" data-title="15 flips">
-      <div class="eyebrow" data-en="Test it" data-es="Pongámoslo a prueba">Test it</div>
-      <h2 data-en="Let's flip it 15 times." data-es="Lancémosla 15 veces.">Let's flip it 15 times.</h2>
+    <section class="slide interactive" data-title-es="15 lanzamientos" data-title-en="15 flips">
+      <div class="eyebrow" data-es="Pongámosla a prueba" data-en="Let's test it">Pongámosla a prueba</div>
+      <h2 data-es="Lancémosla 15 veces." data-en="Let's flip it 15 times.">Lancémosla 15 veces.</h2>
       <div class="coin-controls presenter-only-inline">
-        <button id="headsBtn" class="primary">Heads / Cara</button>
-        <button id="tailsBtn">Tails / Sello</button>
-        <button id="randomBtn" class="ghost">Random fair flip</button>
-        <button id="resetCoinBtn" class="ghost">Reset</button>
+        <button id="headsBtn" class="primary" data-es="Cara" data-en="Heads">Cara</button>
+        <button id="tailsBtn" data-es="Sello" data-en="Tails">Sello</button>
+        <button id="randomBtn" class="ghost" data-es="Lanzamiento al azar" data-en="Random fair flip">Lanzamiento al azar</button>
+        <button id="resetCoinBtn" class="ghost" data-es="Reiniciar" data-en="Reset">Reiniciar</button>
       </div>
       <div id="coinResults" class="coin-results"></div>
       <div class="metric-row">
-        <div class="metric"><span id="headsCount">0</span><small data-en="Heads" data-es="Caras">Heads</small></div>
-        <div class="metric"><span id="tailsCount">0</span><small data-en="Tails" data-es="Sellos">Tails</small></div>
-        <div class="metric"><span id="observedRate">—</span><small data-en="Observed heads" data-es="Caras observadas">Observed heads</small></div>
+        <div class="metric"><span id="headsCount">0</span><small data-es="Caras" data-en="Heads">Caras</small></div>
+        <div class="metric"><span id="tailsCount">0</span><small data-es="Sellos" data-en="Tails">Sellos</small></div>
+        <div class="metric"><span id="observedRate">—</span><small data-es="Porcentaje de caras" data-en="Observed heads">Porcentaje de caras</small></div>
       </div>
-      <p id="coinPrompt" class="instruction" data-en="Enter each physical flip using H/T above. With 15 flips, the sample can never finish exactly 50/50." data-es="Registra cada lanzamiento físico con los botones. Con 15 lanzamientos, la muestra nunca puede terminar exactamente 50/50.">Enter each physical flip using H/T above. With 15 flips, the sample can never finish exactly 50/50.</p>
+      <p id="coinPrompt" class="instruction" data-es="Registra cada lanzamiento con los botones de arriba. Como son 15 lanzamientos, el resultado nunca podrá quedar exactamente 50/50." data-en="Enter each physical flip using the buttons above. With 15 flips, the result can never be exactly 50/50.">Registra cada lanzamiento con los botones de arriba. Como son 15 lanzamientos, el resultado nunca podrá quedar exactamente 50/50.</p>
     </section>
 
-    <section class="slide" data-title="Reconsider">
-      <div class="eyebrow" data-en="Now reconsider" data-es="Ahora reconsidera">Now reconsider</div>
-      <h2 data-en="What is the probability of heads on flip #16?" data-es="¿Cuál es la probabilidad de cara en el lanzamiento #16?">What is the probability of heads on flip #16?</h2>
-      <p class="instruction" data-en="Write down a new answer before discussing it." data-es="Escribe una nueva respuesta antes de discutirla.">Write down a new answer before discussing it.</p>
-      <div class="reveal" data-step="1"><p class="question" data-en="Did the evidence change your belief? Why or why not?" data-es="¿La evidencia cambió tu creencia? ¿Por qué sí o por qué no?">Did the evidence change your belief? Why or why not?</p></div>
-      <div class="reveal" data-step="2"><p class="takeaway" data-en="The same evidence can move different people by different amounts." data-es="La misma evidencia puede cambiar las creencias de personas diferentes en distinta medida.">The same evidence can move different people by different amounts.</p></div>
+    <section class="slide" data-title-es="Volvamos a pensar" data-title-en="Reconsider">
+      <div class="eyebrow" data-es="Piénsalo de nuevo" data-en="Now reconsider">Piénsalo de nuevo</div>
+      <h2 data-es="¿Cuál es la probabilidad de obtener cara en el lanzamiento 16?" data-en="What is the probability of heads on flip 16?">¿Cuál es la probabilidad de obtener cara en el lanzamiento 16?</h2>
+      <p class="instruction" data-es="Anota una nueva respuesta antes de conversar con el grupo." data-en="Write down a new answer before discussing it.">Anota una nueva respuesta antes de conversar con el grupo.</p>
+      <div class="reveal" data-step="1"><p class="question" data-es="¿La evidencia cambió lo que creías? ¿Por qué sí o por qué no?" data-en="Did the evidence change your belief? Why or why not?">¿La evidencia cambió lo que creías? ¿Por qué sí o por qué no?</p></div>
+      <div class="reveal" data-step="2"><p class="takeaway" data-es="La misma evidencia puede cambiar las creencias de cada persona en distinta medida." data-en="The same evidence can affect different people's beliefs by different amounts.">La misma evidencia puede cambiar las creencias de cada persona en distinta medida.</p></div>
     </section>
 
-    <section class="slide" data-title="Natural Bayes">
-      <div class="eyebrow" data-en="The key idea" data-es="La idea clave">The key idea</div>
-      <h2 data-en="We already reason this way." data-es="Ya razonamos de esta manera.">We already reason this way.</h2>
+    <section class="slide" data-title-es="Bayes en la vida diaria" data-title-en="Everyday Bayes">
+      <div class="eyebrow" data-es="La idea clave" data-en="The key idea">La idea clave</div>
+      <h2 data-es="Ya razonamos de esta manera." data-en="We already reason this way.">Ya razonamos de esta manera.</h2>
       <div class="flow">
-        <div><strong data-en="What I believed before" data-es="Lo que creía antes">What I believed before</strong><span data-en="prior information" data-es="información previa">prior information</span></div>
+        <div><strong data-es="Lo que creía antes" data-en="What I believed before">Lo que creía antes</strong><span data-es="información previa" data-en="prior information">información previa</span></div>
         <div class="arrow">→</div>
-        <div><strong data-en="What I observed" data-es="Lo que observé">What I observed</strong><span data-en="new evidence" data-es="nueva evidencia">new evidence</span></div>
+        <div><strong data-es="Lo que observé" data-en="What I observed">Lo que observé</strong><span data-es="evidencia nueva" data-en="new evidence">evidencia nueva</span></div>
         <div class="arrow">→</div>
-        <div><strong data-en="What I believe now" data-es="Lo que creo ahora">What I believe now</strong><span data-en="updated belief" data-es="creencia actualizada">updated belief</span></div>
+        <div><strong data-es="Lo que creo ahora" data-en="What I believe now">Lo que creo ahora</strong><span data-es="creencia actualizada" data-en="updated belief">creencia actualizada</span></div>
       </div>
-      <p class="takeaway" data-en="Bayesian inference gives this everyday reasoning a mathematical structure." data-es="La inferencia bayesiana le da una estructura matemática a este razonamiento cotidiano.">Bayesian inference gives this everyday reasoning a mathematical structure.</p>
+      <p class="takeaway" data-es="La inferencia bayesiana le da una estructura matemática a este razonamiento cotidiano." data-en="Bayesian inference gives this everyday reasoning a mathematical structure.">La inferencia bayesiana le da una estructura matemática a este razonamiento cotidiano.</p>
     </section>
 
-    <section class="slide" data-title="Neiva question">
-      <div class="eyebrow" data-en="Experiment 2" data-es="Experimento 2">Experiment 2</div>
-      <h2 data-en="How often does it rain in Neiva?" data-es="¿Con qué frecuencia llueve en Neiva?">How often does it rain in Neiva?</h2>
-      <p class="question" data-en="If we randomly choose one day in October in Neiva, what is the probability it will be a rainy day?" data-es="Si escogemos al azar un día de octubre en Neiva, ¿cuál es la probabilidad de que sea un día lluvioso?">If we randomly choose one day in October in Neiva, what is the probability it will be a rainy day?</p>
+    <section class="slide" data-title-es="La lluvia en Neiva" data-title-en="Rain in Neiva">
+      <div class="eyebrow" data-es="Experimento 2" data-en="Experiment 2">Experimento 2</div>
+      <h2 data-es="¿Con qué frecuencia llueve en Neiva?" data-en="How often does it rain in Neiva?">¿Con qué frecuencia llueve en Neiva?</h2>
+      <p class="question" data-es="Si escogemos al azar un día de octubre en Neiva, ¿cuál es la probabilidad de que llueva?" data-en="If we randomly choose one day in October in Neiva, what is the probability that it will rain?">Si escogemos al azar un día de octubre en Neiva, ¿cuál es la probabilidad de que llueva?</p>
       <div class="response-card">
-        <div><span data-en="Probability" data-es="Probabilidad">Probability</span><strong>0–100%</strong></div>
-        <div><span data-en="Confidence" data-es="Confianza">Confidence</span><strong>1–5</strong></div>
+        <div><span data-es="Probabilidad" data-en="Probability">Probabilidad</span><strong>0–100%</strong></div>
+        <div><span data-es="Nivel de confianza" data-en="Confidence">Nivel de confianza</span><strong>1–5</strong></div>
       </div>
-      <p class="instruction" data-en="1 = very unsure · 5 = extremely confident" data-es="1 = muy inseguro · 5 = extremadamente seguro">1 = very unsure · 5 = extremely confident</p>
+      <p class="instruction" data-es="1 = nada seguro · 5 = completamente seguro" data-en="1 = very unsure · 5 = extremely confident">1 = nada seguro · 5 = completamente seguro</p>
     </section>
 
-    <section class="slide interactive" data-title="Class prior">
-      <div class="eyebrow" data-en="Build our class belief" data-es="Construyamos la creencia de la clase">Build our class belief</div>
-      <h2 data-en="Every answer adds to our prior." data-es="Cada respuesta contribuye a nuestro prior.">Every answer adds to our prior.</h2>
+    <section class="slide interactive" data-title-es="Creencia previa del grupo" data-title-en="Class prior">
+      <div class="eyebrow" data-es="Construyamos la creencia del grupo" data-en="Let's build the class belief">Construyamos la creencia del grupo</div>
+      <h2 data-es="Cada respuesta aporta a nuestra distribución previa." data-en="Every answer contributes to our prior distribution.">Cada respuesta aporta a nuestra distribución previa.</h2>
       <div class="input-row presenter-only-inline">
-        <label>Probability % <input id="probInput" type="number" min="1" max="99" value="40" /></label>
-        <label>Confidence <select id="confInput"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
-        <button id="addResponseBtn" class="primary">Add response</button>
-        <button id="clearResponsesBtn" class="ghost">Clear</button>
+        <label><span data-es="Probabilidad (%)" data-en="Probability (%)">Probabilidad (%)</span> <input id="probInput" type="number" min="1" max="99" value="40" /></label>
+        <label><span data-es="Nivel de confianza" data-en="Confidence">Nivel de confianza</span> <select id="confInput"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
+        <button id="addResponseBtn" class="primary" data-es="Agregar respuesta" data-en="Add response">Agregar respuesta</button>
+        <button id="clearResponsesBtn" class="ghost" data-es="Borrar respuestas" data-en="Clear responses">Borrar respuestas</button>
       </div>
-      <canvas id="priorChart" width="1100" height="420" aria-label="Class prior distribution"></canvas>
+      <canvas id="priorChart" width="1100" height="420" aria-label="Distribución previa del grupo"></canvas>
       <div class="metric-row compact">
-        <div class="metric"><span id="responseCount">0</span><small data-en="Responses" data-es="Respuestas">Responses</small></div>
-        <div class="metric"><span id="priorMean">—</span><small data-en="Class estimate" data-es="Estimación de la clase">Class estimate</small></div>
-        <div class="metric"><span id="priorSpread">—</span><small data-en="90% belief range" data-es="Rango de creencia del 90%">90% belief range</small></div>
+        <div class="metric"><span id="responseCount">0</span><small data-es="Respuestas" data-en="Responses">Respuestas</small></div>
+        <div class="metric"><span id="priorMean">—</span><small data-es="Estimación del grupo" data-en="Class estimate">Estimación del grupo</small></div>
+        <div class="metric"><span id="priorSpread">—</span><small data-es="Intervalo de creencia del 90%" data-en="90% belief interval">Intervalo de creencia del 90%</small></div>
       </div>
       <div id="responseDots" class="response-dots"></div>
     </section>
 
-    <section class="slide" data-title="What is prior">
-      <div class="eyebrow" data-en="Name what we built" data-es="Demos nombre a lo que construimos">Name what we built</div>
-      <h2 data-en="This is our prior." data-es="Este es nuestro prior.">This is our prior.</h2>
-      <p class="definition" data-en="A prior is a mathematical representation of what we believe before seeing new evidence." data-es="Un prior es una representación matemática de lo que creemos antes de ver nueva evidencia.">A prior is a mathematical representation of what we believe before seeing new evidence.</p>
-      <div class="formula-lite">PRIOR = <span data-en="belief before new evidence" data-es="creencia antes de nueva evidencia">belief before new evidence</span></div>
+    <section class="slide" data-title-es="¿Qué es una distribución previa?" data-title-en="What is a prior?">
+      <div class="eyebrow" data-es="Pongámosle nombre a lo que construimos" data-en="Let's name what we built">Pongámosle nombre a lo que construimos</div>
+      <h2 data-es="Esta es nuestra distribución previa." data-en="This is our prior distribution.">Esta es nuestra distribución previa.</h2>
+      <p class="definition" data-es="Una distribución previa representa matemáticamente lo que creemos antes de observar evidencia nueva." data-en="A prior distribution is a mathematical representation of what we believe before observing new evidence.">Una distribución previa representa matemáticamente lo que creemos antes de observar evidencia nueva.</p>
+      <div class="formula-lite"><span data-es="DISTRIBUCIÓN PREVIA" data-en="PRIOR DISTRIBUTION">DISTRIBUCIÓN PREVIA</span> = <span data-es="creencia antes de observar evidencia nueva" data-en="belief before observing new evidence">creencia antes de observar evidencia nueva</span></div>
     </section>
 
-    <section class="slide interactive" data-title="IDEAM evidence">
-      <div class="eyebrow" data-en="Now add evidence" data-es="Ahora agreguemos evidencia">Now add evidence</div>
-      <h2 data-en="What do the historical data say?" data-es="¿Qué dicen los datos históricos?">What do the historical data say?</h2>
+    <section class="slide interactive" data-title-es="Evidencia del IDEAM" data-title-en="IDEAM evidence">
+      <div class="eyebrow" data-es="Ahora sumemos evidencia" data-en="Now let's add evidence">Ahora sumemos evidencia</div>
+      <h2 data-es="¿Qué dicen los datos históricos?" data-en="What do the historical data tell us?">¿Qué dicen los datos históricos?</h2>
       <div class="evidence-card">
-        <div class="source">IDEAM · <span data-en="October climatology" data-es="climatología de octubre">October climatology</span></div>
+        <div class="source">IDEAM · <span data-es="climatología de octubre" data-en="October climatology">climatología de octubre</span></div>
         <div class="evidence-number"><span id="rainyDaysDisplay">10</span> / <span id="totalDaysDisplay">31</span></div>
-        <div data-en="rainy days in the selected benchmark" data-es="días lluviosos en el valor de referencia seleccionado">rainy days in the selected benchmark</div>
+        <div data-es="días lluviosos en el valor de referencia seleccionado" data-en="rainy days in the selected benchmark">días lluviosos en el valor de referencia seleccionado</div>
       </div>
       <div class="input-row presenter-only-inline">
-        <label>Rainy days <input id="rainyDaysInput" type="number" min="0" max="31" value="10" /></label>
-        <label>Total days <input id="totalDaysInput" type="number" min="1" max="366" value="31" /></label>
-        <button id="setEvidenceBtn">Update benchmark</button>
+        <label><span data-es="Días lluviosos" data-en="Rainy days">Días lluviosos</span> <input id="rainyDaysInput" type="number" min="0" max="31" value="10" /></label>
+        <label><span data-es="Total de días" data-en="Total days">Total de días</span> <input id="totalDaysInput" type="number" min="1" max="366" value="31" /></label>
+        <button id="setEvidenceBtn" data-es="Actualizar referencia" data-en="Update benchmark">Actualizar referencia</button>
       </div>
-      <p class="source-note" data-en="Presenter note: the default 10/31 is a workshop placeholder. Replace it with the exact IDEAM station/climatology value you select before presenting." data-es="Nota para el presentador: el valor predeterminado 10/31 es un valor provisional para el taller. Reemplázalo con el valor exacto de la estación/climatología de IDEAM que selecciones antes de presentar.">Presenter note: the default 10/31 is a workshop placeholder. Replace it with the exact IDEAM station/climatology value you select before presenting.</p>
-      <a class="source-link" href="https://www.ideam.gov.co/sala-de-prensa/boletines/Normales-clim%C3%A1ticas-est%C3%A1ndar" target="_blank" rel="noopener">IDEAM standard climate normals ↗</a>
+      <p class="source-note" data-es="Nota para quien presenta: el valor 10/31 es provisional. Antes del taller, reemplázalo por el dato exacto de la estación o climatología del IDEAM que vayas a citar." data-en="Presenter note: 10/31 is a workshop placeholder. Before presenting, replace it with the exact value from the IDEAM station or climatology you plan to cite.">Nota para quien presenta: el valor 10/31 es provisional. Antes del taller, reemplázalo por el dato exacto de la estación o climatología del IDEAM que vayas a citar.</p>
+      <a class="source-link" href="https://www.ideam.gov.co/sala-de-prensa/boletines/Normales-clim%C3%A1ticas-est%C3%A1ndar" target="_blank" rel="noopener" data-es="Normales climatológicas estándar del IDEAM ↗" data-en="IDEAM standard climate normals ↗">Normales climatológicas estándar del IDEAM ↗</a>
     </section>
 
-    <section class="slide interactive" data-title="Bayesian update">
-      <div class="eyebrow" data-en="The update" data-es="La actualización">The update</div>
-      <h2 data-en="Prior + evidence → posterior" data-es="Prior + evidencia → posterior">Prior + evidence → posterior</h2>
-      <canvas id="updateChart" width="1100" height="420" aria-label="Prior and posterior distributions"></canvas>
+    <section class="slide interactive" data-title-es="Actualización bayesiana" data-title-en="Bayesian update">
+      <div class="eyebrow" data-es="La actualización" data-en="The update">La actualización</div>
+      <h2 data-es="Distribución previa + evidencia → distribución posterior" data-en="Prior distribution + evidence → posterior distribution">Distribución previa + evidencia → distribución posterior</h2>
+      <canvas id="updateChart" width="1100" height="420" aria-label="Distribuciones previa y posterior"></canvas>
       <div class="update-actions presenter-only-inline">
-        <button id="updateBayesBtn" class="primary big-button" data-en="UPDATE OUR BELIEF" data-es="ACTUALIZAR NUESTRA CREENCIA">UPDATE OUR BELIEF</button>
-        <button id="resetPosteriorBtn" class="ghost">Reset view</button>
+        <button id="updateBayesBtn" class="primary big-button" data-es="ACTUALIZAR NUESTRA CREENCIA" data-en="UPDATE OUR BELIEF">ACTUALIZAR NUESTRA CREENCIA</button>
+        <button id="resetPosteriorBtn" class="ghost" data-es="Restablecer vista" data-en="Reset view">Restablecer vista</button>
       </div>
       <div class="metric-row compact">
-        <div class="metric"><span id="posteriorMean">—</span><small data-en="Posterior estimate" data-es="Estimación posterior">Posterior estimate</small></div>
-        <div class="metric"><span id="posteriorRange">—</span><small data-en="90% posterior range" data-es="Rango posterior del 90%">90% posterior range</small></div>
+        <div class="metric"><span id="posteriorMean">—</span><small data-es="Estimación posterior" data-en="Posterior estimate">Estimación posterior</small></div>
+        <div class="metric"><span id="posteriorRange">—</span><small data-es="Intervalo posterior del 90%" data-en="90% posterior interval">Intervalo posterior del 90%</small></div>
       </div>
     </section>
 
-    <section class="slide" data-title="Bayes terms">
-      <div class="eyebrow" data-en="You just did Bayesian inference" data-es="Acabas de hacer inferencia bayesiana">You just did Bayesian inference</div>
-      <h2 data-en="Three words to remember" data-es="Tres palabras para recordar">Three words to remember</h2>
+    <section class="slide" data-title="Conceptos de Bayes">
+      <div class="eyebrow">Acabas de hacer inferencia bayesiana</div>
+      <h2>Tres conceptos para recordar</h2>
       <div class="three-cols">
-        <div><div class="term">PRIOR</div><p data-en="What we believed before." data-es="Lo que creíamos antes.">What we believed before.</p></div>
-        <div><div class="term">LIKELIHOOD</div><p data-en="How compatible the evidence is with different possibilities." data-es="Qué tan compatible es la evidencia con distintas posibilidades.">How compatible the evidence is with different possibilities.</p></div>
-        <div><div class="term">POSTERIOR</div><p data-en="What we believe after incorporating the evidence." data-es="Lo que creemos después de incorporar la evidencia.">What we believe after incorporating the evidence.</p></div>
+        <div><div class="term">PREVIA</div><p>Lo que creíamos antes.</p></div>
+        <div><div class="term">VEROSIMILITUD</div><p>Qué tan compatible es la evidencia con cada posibilidad.</p></div>
+        <div><div class="term">POSTERIOR</div><p>Lo que creemos después de incorporar la evidencia.</p></div>
       </div>
     </section>
 
-    <section class="slide" data-title="Bayes theorem">
-      <div class="eyebrow" data-en="Now the equation" data-es="Ahora la ecuación">Now the equation</div>
-      <h2 data-en="Bayes' theorem" data-es="Teorema de Bayes">Bayes' theorem</h2>
+    <section class="slide" data-title="Teorema de Bayes">
+      <div class="eyebrow">Ahora sí, la ecuación</div>
+      <h2>Teorema de Bayes</h2>
       <div class="bayes-equation">P(H|E) = <span class="fraction"><span>P(E|H) · P(H)</span><span>P(E)</span></span></div>
       <div class="reveal" data-step="1">
-        <p class="takeaway" data-en="The equation formalizes the process we just experienced." data-es="La ecuación formaliza el proceso que acabamos de experimentar.">The equation formalizes the process we just experienced.</p>
+        <p class="takeaway">La ecuación formaliza el proceso que acabamos de experimentar.</p>
       </div>
     </section>
 
-    <section class="slide" data-title="Frequentist vs Bayesian">
-      <div class="eyebrow" data-en="Two ways to learn from data" data-es="Dos maneras de aprender de los datos">Two ways to learn from data</div>
-      <h2 data-en="Frequentist vs. Bayesian" data-es="Frecuentista vs. bayesiano">Frequentist vs. Bayesian</h2>
+    <section class="slide" data-title="Frecuentismo y bayesianismo">
+      <div class="eyebrow">Dos maneras de aprender de los datos</div>
+      <h2>Enfoque frecuentista y enfoque bayesiano</h2>
       <div class="compare">
         <div>
-          <h3 data-en="Frequentist" data-es="Frecuentista">Frequentist</h3>
-          <p data-en="Assume there is a fixed true value. Use repeated observations to estimate it." data-es="Supone que existe un valor verdadero fijo. Usa observaciones repetidas para estimarlo.">Assume there is a fixed true value. Use repeated observations to estimate it.</p>
-          <div class="mini-data">H H T H T H H T → 62.5%</div>
+          <h3>Frecuentista</h3>
+          <p>Supone que existe un valor verdadero y fijo. Usa observaciones repetidas para estimarlo.</p>
+          <div class="mini-data">C C S C S C C S → 62,5%</div>
         </div>
         <div>
-          <h3 data-en="Bayesian" data-es="Bayesiano">Bayesian</h3>
-          <p data-en="Represent uncertainty directly. Update the distribution when new evidence arrives." data-es="Representa la incertidumbre directamente. Actualiza la distribución cuando llega nueva evidencia.">Represent uncertainty directly. Update the distribution when new evidence arrives.</p>
-          <div class="mini-flow">prior → evidence → posterior</div>
+          <h3>Bayesiano</h3>
+          <p>Representa la incertidumbre de forma directa. Actualiza la distribución cuando aparece evidencia nueva.</p>
+          <div class="mini-flow">previa → evidencia → posterior</div>
         </div>
       </div>
-      <p class="takeaway" data-en="Both are useful. They answer uncertainty in different ways." data-es="Ambos son útiles. Abordan la incertidumbre de maneras diferentes.">Both are useful. They answer uncertainty in different ways.</p>
+      <p class="takeaway">Los dos enfoques son útiles: abordan la incertidumbre de maneras distintas.</p>
     </section>
 
-    <section class="slide" data-title="AI bridge">
-      <div class="eyebrow" data-en="The bridge to AI" data-es="El puente hacia la IA">The bridge to AI</div>
-      <h2 data-en="AI has the same problem we do." data-es="La IA tiene el mismo problema que nosotros.">AI has the same problem we do.</h2>
-      <p class="giant-statement" data-en="It must make predictions with incomplete information." data-es="Debe hacer predicciones con información incompleta.">It must make predictions with incomplete information.</p>
+    <section class="slide" data-title="El puente hacia la IA">
+      <div class="eyebrow">El puente hacia la inteligencia artificial</div>
+      <h2>La IA enfrenta el mismo problema que nosotros.</h2>
+      <p class="giant-statement">Tiene que hacer predicciones con información incompleta.</p>
       <div class="flow compact-flow">
-        <div><strong data-en="Input" data-es="Entrada">Input</strong><span data-en="data" data-es="datos">data</span></div>
+        <div><strong>Entrada</strong><span>datos</span></div>
         <div class="arrow">→</div>
-        <div><strong data-en="Uncertainty" data-es="Incertidumbre">Uncertainty</strong><span data-en="many possibilities" data-es="muchas posibilidades">many possibilities</span></div>
+        <div><strong>Incertidumbre</strong><span>muchas posibilidades</span></div>
         <div class="arrow">→</div>
-        <div><strong data-en="Prediction" data-es="Predicción">Prediction</strong><span data-en="probabilities" data-es="probabilidades">probabilities</span></div>
+        <div><strong>Predicción</strong><span>probabilidades</span></div>
       </div>
     </section>
 
-    <section class="slide" data-title="Spam">
-      <div class="eyebrow" data-en="AI example 1" data-es="Ejemplo de IA 1">AI example 1</div>
-      <h2 data-en="Spam filter" data-es="Filtro de spam">Spam filter</h2>
-      <div class="message-card">CONGRATULATIONS! YOU WON A FREE PHONE!</div>
-      <p class="question" data-en="Spam or not spam?" data-es="¿Spam o no spam?">Spam or not spam?</p>
-      <div class="reveal" data-step="1"><div class="conditional">P(spam | words)</div></div>
-      <div class="reveal" data-step="2"><p class="takeaway" data-en="The system combines what it learned before with the evidence in this message." data-es="El sistema combina lo que aprendió antes con la evidencia de este mensaje.">The system combines what it learned before with the evidence in this message.</p></div>
+    <section class="slide" data-title="Correo no deseado">
+      <div class="eyebrow">Ejemplo de IA 1</div>
+      <h2>Filtro de correo no deseado</h2>
+      <div class="message-card">¡FELICITACIONES! ¡TE GANASTE UN CELULAR GRATIS!</div>
+      <p class="question">¿Es correo no deseado o no?</p>
+      <div class="reveal" data-step="1"><div class="conditional">P(correo no deseado | palabras)</div></div>
+      <div class="reveal" data-step="2"><p class="takeaway">El sistema combina lo que aprendió antes con la evidencia que encuentra en este mensaje.</p></div>
     </section>
 
-    <section class="slide" data-title="Vision">
-      <div class="eyebrow" data-en="AI example 2" data-es="Ejemplo de IA 2">AI example 2</div>
-      <h2 data-en="Image recognition" data-es="Reconocimiento de imágenes">Image recognition</h2>
+    <section class="slide" data-title="Visión artificial">
+      <div class="eyebrow">Ejemplo de IA 2</div>
+      <h2>Reconocimiento de imágenes</h2>
       <div class="animal-shape" aria-hidden="true"><span>?</span></div>
       <div class="prob-bars">
-        <div><span>Dog</span><i style="--w:72%"></i><b>72%</b></div>
-        <div><span>Wolf</span><i style="--w:23%"></i><b>23%</b></div>
+        <div><span>Perro</span><i style="--w:72%"></i><b>72%</b></div>
+        <div><span>Lobo</span><i style="--w:23%"></i><b>23%</b></div>
         <div><span>Coyote</span><i style="--w:5%"></i><b>5%</b></div>
       </div>
-      <p class="takeaway" data-en="A prediction can be a distribution over possibilities, not a single certain answer." data-es="Una predicción puede ser una distribución de posibilidades, no una respuesta única y segura.">A prediction can be a distribution over possibilities, not a single certain answer.</p>
+      <p class="takeaway">Una predicción puede ser una distribución entre varias posibilidades, no una única respuesta definitiva.</p>
     </section>
 
-    <section class="slide" data-title="LLMs">
-      <div class="eyebrow" data-en="AI example 3" data-es="Ejemplo de IA 3">AI example 3</div>
-      <h2 data-en="Language models" data-es="Modelos de lenguaje">Language models</h2>
-      <div class="prompt-box">The capital of Colombia is <span class="cursor">▌</span></div>
+    <section class="slide" data-title="Modelos de lenguaje">
+      <div class="eyebrow">Ejemplo de IA 3</div>
+      <h2>Modelos de lenguaje</h2>
+      <div class="prompt-box">La capital de Colombia es <span class="cursor">▌</span></div>
       <div class="token-list reveal" data-step="1">
-        <div><span>Bogotá</span><strong>98.4%</strong></div>
-        <div><span>Medellín</span><strong>0.6%</strong></div>
-        <div><span>Cali</span><strong>0.3%</strong></div>
-        <div><span>Other</span><strong>0.7%</strong></div>
+        <div><span>Bogotá</span><strong>98,4%</strong></div>
+        <div><span>Medellín</span><strong>0,6%</strong></div>
+        <div><span>Cali</span><strong>0,3%</strong></div>
+        <div><span>Otra</span><strong>0,7%</strong></div>
       </div>
-      <div class="reveal" data-step="2"><div class="conditional">P(next token | previous tokens)</div></div>
+      <div class="reveal" data-step="2"><div class="conditional">P(siguiente token | tokens anteriores)</div></div>
     </section>
 
-    <section class="slide" data-title="AI caveat">
-      <div class="eyebrow" data-en="Important distinction" data-es="Distinción importante">Important distinction</div>
-      <h2 data-en="Modern AI is more complicated than today's equation." data-es="La IA moderna es más compleja que la ecuación de hoy.">Modern AI is more complicated than today's equation.</h2>
-      <p class="definition" data-en="Neural networks and large language models are not simply applying Bayes' theorem once per prediction. But probability, conditional information, uncertainty, and learning from data are foundational ideas across AI." data-es="Las redes neuronales y los modelos grandes de lenguaje no aplican simplemente el teorema de Bayes una vez por predicción. Pero la probabilidad, la información condicional, la incertidumbre y el aprendizaje a partir de datos son ideas fundamentales en la IA.">Neural networks and large language models are not simply applying Bayes' theorem once per prediction. But probability, conditional information, uncertainty, and learning from data are foundational ideas across AI.</p>
+    <section class="slide" data-title="Una precisión sobre la IA">
+      <div class="eyebrow">Una distinción importante</div>
+      <h2>La IA moderna es más compleja que la ecuación de hoy.</h2>
+      <p class="definition">Las redes neuronales y los modelos grandes de lenguaje no se limitan a aplicar el teorema de Bayes una vez por predicción. Sin embargo, la probabilidad, la información condicional, la incertidumbre y el aprendizaje a partir de datos son ideas fundamentales en la IA.</p>
     </section>
 
-    <section class="slide" data-title="Final challenge">
-      <div class="eyebrow" data-en="Final challenge" data-es="Reto final">Final challenge</div>
-      <h2 data-en="An AI says: “There is an 85% chance this is true.”" data-es="Una IA dice: “Hay un 85% de probabilidad de que esto sea verdad.”">An AI says: “There is an 85% chance this is true.”</h2>
-      <p class="question" data-en="What should you want to know before trusting it?" data-es="¿Qué deberías querer saber antes de confiar en ella?">What should you want to know before trusting it?</p>
+    <section class="slide" data-title="Reto final">
+      <div class="eyebrow">Reto final</div>
+      <h2>Una IA afirma: «Hay un 85% de probabilidad de que esto sea cierto».</h2>
+      <p class="question">¿Qué deberías averiguar antes de confiar en esa respuesta?</p>
       <div class="final-questions reveal" data-step="1">
-        <span data-en="What data did it see?" data-es="¿Qué datos vio?">What data did it see?</span>
-        <span data-en="How much data?" data-es="¿Cuántos datos?">How much data?</span>
-        <span data-en="What assumptions are built in?" data-es="¿Qué supuestos están incorporados?">What assumptions are built in?</span>
-        <span data-en="How uncertain is it?" data-es="¿Qué tan incierta es?">How uncertain is it?</span>
-        <span data-en="What evidence would change its answer?" data-es="¿Qué evidencia cambiaría su respuesta?">What evidence would change its answer?</span>
+        <span>¿Qué datos analizó?</span>
+        <span>¿Cuántos datos tenía?</span>
+        <span>¿Qué supuestos incorpora?</span>
+        <span>¿Cómo representa su incertidumbre?</span>
+        <span>¿Qué evidencia le haría cambiar la respuesta?</span>
       </div>
     </section>
 
-    <section class="slide title-slide" data-title="Closing">
-      <div class="eyebrow" data-en="Takeaway" data-es="Idea final">Takeaway</div>
-      <h1 data-en="Intelligence is knowing how to reason when you are uncertain." data-es="La inteligencia consiste en saber razonar cuando existe incertidumbre.">Intelligence is knowing how to reason when you are uncertain.</h1>
-      <p class="subtitle" data-en="Probability gives us the language. Bayesian inference gives us a way to update. AI scales those ideas with data and computation." data-es="La probabilidad nos da el lenguaje. La inferencia bayesiana nos da una forma de actualizar. La IA escala esas ideas con datos y computación.">Probability gives us the language. Bayesian inference gives us a way to update. AI scales those ideas with data and computation.</p>
+    <section class="slide title-slide" data-title="Cierre">
+      <div class="eyebrow">Para llevarnos</div>
+      <h1>Ser inteligente también es saber razonar cuando no tenemos certeza.</h1>
+      <p class="subtitle">La probabilidad nos da el lenguaje. La inferencia bayesiana nos permite actualizar lo que creemos. La IA lleva estas ideas a otra escala con datos y capacidad de cómputo.</p>
     </section>
   </main>
 
   <div id="progress"><div id="progressBar"></div></div>
   <div id="slideCounter">1 / 21</div>
-  <div id="hint">← → navigate · space reveals · P presenter · L language · F fullscreen</div>
+  <div id="hint">← → navegar · Espacio revelar · P panel · F pantalla completa</div>
 
-  <aside id="presenterPanel" aria-hidden="true">
-    <h3>Presenter</h3>
-    <button id="prevBtn">← Previous</button>
-    <button id="nextBtn" class="primary">Next →</button>
-    <button id="langBtn">English / Español</button>
-    <button id="fullscreenBtn">Fullscreen</button>
+  <aside id="presenterPanel" aria-hidden="true" aria-label="Panel de presentación">
+    <h3>Presentación</h3>
+    <button id="prevBtn">← Anterior</button>
+    <button id="nextBtn" class="primary">Siguiente →</button>
+    <button id="fullscreenBtn">Pantalla completa</button>
     <hr />
     <div id="presenterTitle"></div>
-    <p class="small">Keyboard: ←/→ slides · Space reveal · P panel · L language · F fullscreen</p>
+    <p class="small">Teclado: ←/→ diapositivas · Espacio revelar · P panel · F pantalla completa</p>
   </aside>
 
   <script src="app.js"></script>

@@ -1,102 +1,97 @@
-# Reasoning Under Uncertainty — Bayesian Inference & AI
+# Razonar en medio de la incertidumbre — Inferencia bayesiana e IA
 
-A self-contained, GitHub-Pages-ready interactive presentation for a ~60 minute high-school / early-college workshop.
+Presentación interactiva y autónoma para un taller de aproximadamente 60 minutos dirigido a estudiantes de los últimos grados de bachillerato o de los primeros semestres universitarios. Está lista para publicarse con GitHub Pages.
 
-## What is included
+## ¿Qué incluye?
 
-- Full-screen slide-style presentation in the browser
-- English / Spanish toggle (`L`)
-- Presenter controls (`P`)
-- Keyboard navigation (`←`, `→`, `Space`)
-- Fullscreen mode (`F`)
-- 15-flip coin experiment with manual H/T entry or fair random simulation
-- Live class probability + confidence entry
-- Confidence-weighted Bayesian class prior visualization
-- Editable rainy-day evidence benchmark
-- Bayesian posterior update animation/visualization
-- Frequentist vs. Bayesian explanation
-- AI examples: spam classification, image prediction, language models
-- Offline-friendly: no JavaScript frameworks, fonts, APIs, or CDNs are required
+- Presentación en pantalla completa, organizada por diapositivas.
+- Panel con controles para quien presenta (`P`).
+- Navegación con el teclado (`←`, `→` y `Espacio`).
+- Modo de pantalla completa (`F`).
+- Experimento de 15 lanzamientos de una moneda, con registro manual de cara o sello y simulación al azar.
+- Registro en vivo de la probabilidad y el nivel de confianza de cada participante.
+- Visualización bayesiana de la distribución previa del grupo, ponderada por el nivel de confianza.
+- Valor de referencia editable para los días lluviosos.
+- Visualización de la actualización de la distribución posterior.
+- Comparación entre los enfoques frecuentista y bayesiano.
+- Ejemplos de inteligencia artificial: clasificación de correo no deseado, reconocimiento de imágenes y modelos de lenguaje.
+- Funcionamiento sin conexión: no necesita marcos de JavaScript, fuentes externas, API ni CDN.
 
-## Run locally
+## Cómo ejecutarla en tu equipo
 
-Open `index.html` directly in a modern browser, or run any simple local web server in this directory.
+Abre `index.html` directamente en un navegador moderno. También puedes iniciar un servidor web sencillo desde esta carpeta.
 
-For example, with Python installed:
+Por ejemplo, si tienes Python instalado:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Después, abre `http://localhost:8000` en el navegador.
 
-## Publish with GitHub Pages
+## Cómo publicarla con GitHub Pages
 
-1. Create a GitHub repository, e.g. `bayes-workshop`.
-2. Upload `index.html`, `styles.css`, and `app.js` to the repository root.
-3. In GitHub: **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select the `main` branch and `/ (root)` folder.
-6. Save. GitHub will provide the public Pages URL.
+1. Crea un repositorio en GitHub; por ejemplo, `taller-bayesiano`.
+2. Sube `index.html`, `styles.css` y `app.js` a la raíz del repositorio.
+3. En GitHub, ve a **Settings → Pages**.
+4. En **Build and deployment**, selecciona **Deploy from a branch**.
+5. Escoge la rama `main` y la carpeta `/ (root)`.
+6. Guarda los cambios. GitHub te mostrará la dirección pública de la página.
 
-## Presenter workflow
+## Guía para la presentación
 
-- `→` or `Page Down`: next slide / reveal
-- `←` or `Page Up`: previous slide
-- `Space`: reveal the next item; if nothing is hidden, advance
-- `P`: show/hide presenter panel and fully expose interactive controls
-- `L`: toggle English / Spanish
-- `F`: enter/exit fullscreen
+- `→` o `Av Pág`: ir a la siguiente diapositiva o revelar el siguiente elemento.
+- `←` o `Re Pág`: volver a la diapositiva anterior.
+- `Espacio`: revelar el siguiente elemento; si no hay nada oculto, avanzar.
+- `P`: mostrar u ocultar el panel y habilitar por completo los controles interactivos.
+- `F`: entrar o salir del modo de pantalla completa.
 
-### Coin experiment
+### Experimento de la moneda
 
-On the “Let's flip it 15 times” screen, press `P` to expose the controls. Flip a physical coin and click **Heads / Cara** or **Tails / Sello** after each result. The presentation automatically tracks the observed proportion.
+En la diapositiva «Lancémosla 15 veces», oprime `P` para habilitar los controles. Lanza una moneda física y selecciona **Cara** o **Sello** después de cada resultado. La presentación calcula automáticamente el porcentaje observado.
 
-### Class prior experiment
+### Distribución previa del grupo
 
-On the class-prior slide, enter each student's probability estimate and confidence from 1–5. Each response is represented as a Beta distribution. Confidence is mapped to an effective information strength:
+En esta diapositiva, registra la probabilidad estimada por cada participante y su nivel de confianza, de 1 a 5. Cada respuesta se representa mediante una distribución beta. El nivel de confianza se convierte en una cantidad efectiva de información así:
 
-- 1 → 2 pseudo-observations
-- 2 → 5
-- 3 → 10
-- 4 → 20
-- 5 → 40
+- 1 → 2 pseudoobservaciones.
+- 2 → 5 pseudoobservaciones.
+- 3 → 10 pseudoobservaciones.
+- 4 → 20 pseudoobservaciones.
+- 5 → 40 pseudoobservaciones.
 
-The class prior is an equal-weight mixture of those individual distributions. This is an intentionally transparent teaching model, not a claim that subjective confidence has a uniquely correct mathematical conversion.
+La distribución previa del grupo es una mezcla que asigna el mismo peso a cada distribución individual. Es un modelo pedagógico deliberadamente transparente; no pretende afirmar que exista una única conversión matemática correcta para la confianza subjetiva.
 
-### Bayesian update
+### Actualización bayesiana
 
-The historical evidence is treated as Bernoulli rainy/not-rainy observations. The posterior is calculated numerically as:
+La evidencia histórica se interpreta como una serie de observaciones binarias: día lluvioso o día no lluvioso. La distribución posterior se calcula numéricamente así:
 
-`posterior(p) ∝ prior(p) × p^(rainy days) × (1-p)^(non-rainy days)`
+`posterior(p) ∝ previa(p) × p^(días lluviosos) × (1-p)^(días no lluviosos)`
 
-This lets the class's actual prior update in real time without assuming the prior itself is a single Beta distribution.
+De esta manera, la distribución previa construida por el grupo se actualiza en tiempo real sin suponer que deba ser una única distribución beta.
 
-## IDEAM benchmark
+## Valor de referencia del IDEAM
 
-The page currently defaults to **10 rainy days out of 31** only as a workshop placeholder so the interaction is immediately usable. Before presenting, replace it with the exact Neiva station/climatology value you intend to cite.
+La presentación usa **10 días lluviosos de 31** como dato provisional para que la actividad funcione desde el comienzo. Antes del taller, reemplázalo por el valor exacto de la estación o climatología de Neiva que vayas a citar.
 
-Official source page included in the presentation:
+Fuentes oficiales incluidas:
 
-- IDEAM — Standard climate normals: https://www.ideam.gov.co/sala-de-prensa/boletines/Normales-clim%C3%A1ticas-est%C3%A1ndar
+- [Normales climatológicas estándar del IDEAM](https://www.ideam.gov.co/sala-de-prensa/boletines/Normales-clim%C3%A1ticas-est%C3%A1ndar).
+- [Atlas climatológico del IDEAM](https://www.ideam.gov.co/AtlasWeb/), que incluye productos sobre el número de días con lluvia.
 
-IDEAM also provides a climatological atlas with number-of-days-with-rain products:
+Quien presenta puede modificar en vivo la cantidad de días lluviosos y el total de días sin editar el código fuente.
 
-- https://www.ideam.gov.co/AtlasWeb/
+## Distribución sugerida de los 60 minutos
 
-The presenter can change the rainy-day count and total days live without editing source code.
+- Minutos 0–5: conceptos básicos de probabilidad.
+- Minutos 5–15: experimento de la moneda equilibrada.
+- Minutos 15–20: conversación sobre las distintas reacciones frente a la evidencia.
+- Minutos 20–35: estimaciones sobre la lluvia en Neiva y niveles de confianza.
+- Minutos 35–42: presentación de la evidencia oficial y actualización de la distribución previa.
+- Minutos 42–50: conceptos de Bayes, ecuación y comparación con el enfoque frecuentista.
+- Minutos 50–58: aplicaciones en inteligencia artificial.
+- Minutos 58–60: reto final y conclusión.
 
-## Recommended 60-minute pacing
+## Notas de diseño
 
-- 0–5: Probability basics
-- 5–15: Fair coin experiment
-- 15–20: Discuss different reactions to the evidence
-- 20–35: Neiva probability + confidence responses
-- 35–42: Reveal official evidence and update the prior
-- 42–50: Bayes terms, equation, frequentist comparison
-- 50–58: AI applications
-- 58–60: Final challenge and takeaway
-
-## Design notes
-
-The page is intentionally built like a presentation rather than a conventional website: one idea per screen, large typography, minimal interface, and no scrolling. It is also designed to keep working if internet access drops after the page is loaded.
+La página está pensada como una presentación, no como un sitio web convencional: muestra una idea por pantalla, usa tipografía grande, mantiene la interfaz al mínimo y evita el desplazamiento vertical. También está diseñada para seguir funcionando si se pierde la conexión a internet después de abrirla.
