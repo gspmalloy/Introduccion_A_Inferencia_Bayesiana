@@ -32,12 +32,16 @@ Después, abre `http://localhost:8000` en el navegador.
 
 ## Cómo publicarla con GitHub Pages
 
-1. Crea un repositorio en GitHub; por ejemplo, `taller-bayesiano`.
-2. Sube `index.html`, `styles.css` y `app.js` a la raíz del repositorio.
-3. En GitHub, ve a **Settings → Pages**.
-4. En **Build and deployment**, selecciona **Deploy from a branch**.
-5. Escoge la rama `main` y la carpeta `/ (root)`.
-6. Guarda los cambios. GitHub te mostrará la dirección pública de la página.
+El repositorio incluye el flujo de trabajo `.github/workflows/deploy-pages.yml`, que publica automáticamente el contenido de `bayes_workshop` cada vez que hay cambios en la rama `main`.
+
+Solo necesitas configurar GitHub una vez:
+
+1. Sube el repositorio a GitHub.
+2. Ve a **Settings → Pages**.
+3. En **Build and deployment → Source**, selecciona **GitHub Actions**.
+4. Envía cambios a la rama `main` o ejecuta manualmente **Publicar taller en GitHub Pages** desde la pestaña **Actions**.
+
+GitHub mostrará la dirección pública cuando termine la primera publicación. Como el flujo publica directamente la carpeta del taller, `index.html` queda en la raíz del sitio y las rutas relativas de `styles.css` y `app.js` funcionan tanto en proyectos como en sitios de usuario u organización.
 
 ## Guía para la presentación
 
