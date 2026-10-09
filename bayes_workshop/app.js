@@ -27,6 +27,7 @@ function toggleLang(){
   $('#pageDescription').content=lang==='es'?'Taller interactivo de introducción a la inferencia bayesiana y su relación con la inteligencia artificial.':'An interactive introduction to Bayesian inference and its relationship with artificial intelligence.';
   document.querySelectorAll('[data-en][data-es]').forEach(el=>{el.textContent=el.dataset[lang]});
   document.querySelectorAll('[data-aria-en][data-aria-es]').forEach(el=>{el.setAttribute('aria-label',el.dataset[`aria${lang==='es'?'Es':'En'}`])});
+  document.querySelectorAll('[data-alt-en][data-alt-es]').forEach(el=>{el.alt=el.dataset[`alt${lang==='es'?'Es':'En'}`]});
   $('#coinFace').textContent=lang==='es'?'C':'H';
   renderFlips();renderResponses();
   $('#presenterTitle').textContent=slides[index].dataset[`title${lang==='es'?'Es':'En'}`]||'';
